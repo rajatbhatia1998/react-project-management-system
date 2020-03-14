@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import Hello from './Hello';
+import {BrowserRouter as Router,Route} from 'react-router-dom'
+import {Provider} from 'react-redux'
 import './style.css';
-
+import store from './Store/store.js'
 class App extends Component {
   constructor() {
     super();
@@ -12,15 +13,20 @@ class App extends Component {
   }
 
   render() {
+    console.log(store.getState())
     return (
       <div>
-        <Hello name={this.state.name} />
-        <p>
-          Start editing to see some magic happen :)
-        </p>
+
+         Hey
       </div>
     );
   }
 }
 
-render(<App />, document.getElementById('root'));
+render(
+  <Provider store={store}>
+  <App />
+  </Provider>
+  
+  
+  , document.getElementById('root'));
