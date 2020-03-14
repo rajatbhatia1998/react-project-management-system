@@ -4,12 +4,24 @@ import {BrowserRouter as Router,Route} from 'react-router-dom'
 import {Provider} from 'react-redux'
 import './style.css';
 import store from './Store/store.js'
+import firebase from 'firebase/app'
+import firebaseConfig from './Components/Config/fbconfig.js'
+
+//Components import
+import Login from './Components/Auth/Login.js'
+
+
+
+
 class App extends Component {
   constructor() {
     super();
     this.state = {
       name: 'React'
     };
+ if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
   }
 
   render() {
@@ -17,7 +29,14 @@ class App extends Component {
     return (
       <div>
 
-         Hey
+         <p>This is nav</p>
+         <Router>
+            <Route path="/login" exact>
+                  <Login/>
+            </Route>
+
+
+         </Router>
       </div>
     );
   }
